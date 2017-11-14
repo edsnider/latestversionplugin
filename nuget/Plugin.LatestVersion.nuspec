@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata minClientVersion="2.8.1">
+        <id>Xam.Plugin.LatestVersion</id>
+        <title>LatestVersion Plugin for Xamarin</title>
+        <version>0.0.0</version>
+        <authors>edsnider</authors>
+        <owners>edsnider</owners>
+        <licenseUrl>https://github.com/edsnider/LatestVersionPlugin/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/edsnider/LatestVersionPlugin</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Easily detect if you are running the latest version of your Xamarin iOS and Android apps.</description>
+        <tags>ios, android, xamarin.ios, xamarin.android, latestversion, apps, version, appstore, playstore, iphone, ipad, xamarin, xam.plugin, plugin</tags>
+    </metadata>
+    <files>
+        <file src="src\Plugin.LatestVersion\bin\Release\netstandard1.1\Plugin.LatestVersion.*" target="lib/netstandard1.1" />
+        <file src="src\Plugin.LatestVersion.Android\bin\Release\Plugin.LatestVersion.*" target="lib/MonoAndroid10" />
+        <file src="src\Plugin.LatestVersion.iOS\bin\Release\Plugin.LatestVersion.*" target="lib/Xamarin.iOS10" />
+    </files>
+</package>
