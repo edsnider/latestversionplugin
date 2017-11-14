@@ -17,4 +17,4 @@ _This plugin is currently a beta/pre-release and only supports Xamarin.iOS and X
 
 ## License
 
-Licensed under MIT see [License file](https://github.com/edsnider/LocalNotificationsPlugin/blob/master/LICENSE)
+Licensed under MIT see [License file](https://github.com/edsnider/LatestVersionPlugin/blob/master/LICENSE)
