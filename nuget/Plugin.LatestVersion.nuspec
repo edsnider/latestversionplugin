@@ -13,8 +13,8 @@
         <tags>ios, android, xamarin.ios, xamarin.android, latestversion, apps, version, appstore, playstore, iphone, ipad, xamarin, xam.plugin, plugin</tags>
     </metadata>
     <files>
-        <file src="src\Plugin.LatestVersion\bin\Release\netstandard1.1\Plugin.LatestVersion.*" target="lib/netstandard1.1" />
-        <file src="src\Plugin.LatestVersion.Android\bin\Release\Plugin.LatestVersion.*" target="lib/MonoAndroid10" />
-        <file src="src\Plugin.LatestVersion.iOS\bin\Release\Plugin.LatestVersion.*" target="lib/Xamarin.iOS10" />
+        <file src="src\Plugin.LatestVersion\bin\Release\netstandard1.1\Plugin.LatestVersion.*" target="lib\netstandard1.1" />
+        <file src="src\Plugin.LatestVersion.Android\bin\Release\Plugin.LatestVersion.*" target="lib\MonoAndroid10" />
+        <file src="src\Plugin.LatestVersion.iOS\bin\Release\Plugin.LatestVersion.*" target="lib\Xamarin.iOS10" />
     </files>
 </package>
