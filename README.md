@@ -1,6 +1,7 @@
 # LatestVersion Plugin for Xamarin apps
 
 [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.LatestVersion.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.LatestVersion/)
+[![Build status](https://ci.appveyor.com/api/projects/status/sbvvle9doh9k6fkw?svg=true)](https://ci.appveyor.com/project/edsnider/latestversionplugin)
 
 Easily detect if you are running the latest version of your Xamarin.iOS and Xamarin.Android apps. Open apps in the App Store and Play Store to allow users to easily update to the latest version of your app.
 
