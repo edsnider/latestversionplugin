@@ -1,4 +1,11 @@
-version: 1.0.0-beta{build}
+init:
+- cmd: >-
+    if [ "%APPVEYOR_REPO_TAG%" == "true" ]; then
+      appveyor updatebuild -version "%APPVEYOR_REPO_TAG_NAME%"
+    else
+      appveyor updatebuild -version "1.0.0-beta%APPVEYOR_BUILD_NUMBER%"
+    fi
+
 branches:
   only:
     - master
