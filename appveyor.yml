@@ -1,0 +1,23 @@
+version: 1.0.0-beta{build}
+branches:
+  only:
+    - master
+only_commits:
+  files: 
+    - src/
+image: Visual Studio 2017
+configuration: Release
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+before_build:
+- cmd: nuget restore src/LatestVersionPlugin.sln
+build:
+  verbosity: minimal
+after_build:
+- cmd: nuget pack nuget/Plugin.LatestVersion.nuspec -basepath "./" -version "%APPVEYOR_BUILD_VERSION%"
+artifacts:
+- path: '**\*.nupkg'
