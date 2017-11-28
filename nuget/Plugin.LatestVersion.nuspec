@@ -3,7 +3,7 @@
     <metadata minClientVersion="2.8.1">
         <id>Xam.Plugin.LatestVersion</id>
         <title>LatestVersion Plugin for Xamarin</title>
-        <version>0.0.0</version>
+        <version>$version$</version>
         <authors>edsnider</authors>
         <owners>edsnider</owners>
         <licenseUrl>https://github.com/edsnider/LatestVersionPlugin/blob/master/LICENSE</licenseUrl>
