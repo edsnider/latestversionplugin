@@ -27,7 +27,7 @@ namespace Plugin.LatestVersion
             {
                 var latestVersion = await GetLatestVersionNumber();
 
-                return Version.Parse(latestVersion).CompareTo(Version.Parse(_versionName)) == 0;
+                return Version.Parse(latestVersion).CompareTo(Version.Parse(_versionName)) <= 0;
             }
             catch (Exception e)
             {
