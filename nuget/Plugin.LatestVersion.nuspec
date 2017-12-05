@@ -11,6 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Easily detect if you are running the latest version of your Xamarin iOS and Android apps.</description>
         <tags>ios, android, xamarin.ios, xamarin.android, latestversion, apps, version, appstore, playstore, iphone, ipad, xamarin, xam.plugin, plugin</tags>
+        <releaseNotes>https://github.com/edsnider/LatestVersionPlugin/blob/master/CHANGELOG.md</releaseNotes>
     </metadata>
     <files>
         <file src="src\Plugin.LatestVersion\bin\Release\netstandard1.1\Plugin.LatestVersion.*" target="lib\netstandard1.1" />
