@@ -46,6 +46,11 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<string> GetLatestVersionNumber(string appName)
         {
+            if (string.IsNullOrWhiteSpace(appName))
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
             var version = string.Empty;
             var url = $"https://play.google.com/store/apps/details?id={appName}";
 
@@ -94,6 +99,11 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public void OpenAppInStore(string appName)
         {
+            if (string.IsNullOrWhiteSpace(appName))
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
             try
             {
                 var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"market://details?id={appName}"));

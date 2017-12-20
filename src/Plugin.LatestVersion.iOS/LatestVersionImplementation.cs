@@ -43,6 +43,11 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<string> GetLatestVersionNumber(string appName)
         {
+            if (string.IsNullOrWhiteSpace(appName))
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
             var version = string.Empty;
             var url = $"http://itunes.apple.com/lookup?bundleId={appName}";
 
@@ -83,14 +88,29 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public void OpenAppInStore()
         {
-            var appName = _bundleName.Replace(" ", "").ToLower();
+            var appName = _bundleName?.Replace(" ", "").ToLower();
+
             OpenAppInStore(appName);
         }
 
         /// <inheritdoc />
         public void OpenAppInStore(string appName)
         {
-            UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
+            if (string.IsNullOrWhiteSpace(appName))
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
+            try
+            {
+                appName = appName.Replace(" ", "").ToLower();
+
+                UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
+            }
+            catch (Exception e)
+            {
+                throw new LatestVersionException($"Unable to open {appName} in App Store.", e);
+            }
         }
     }
 }
