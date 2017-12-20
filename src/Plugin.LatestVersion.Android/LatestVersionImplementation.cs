@@ -23,15 +23,17 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<bool> IsUsingLatestVersion()
         {
+            var latestVersion = string.Empty;
+
             try
             {
-                var latestVersion = await GetLatestVersionNumber();
+                latestVersion = await GetLatestVersionNumber();
 
                 return Version.Parse(latestVersion).CompareTo(Version.Parse(_versionName)) <= 0;
             }
             catch (Exception e)
             {
-                throw new AppVersionComparisonException(e);
+                throw new LatestVersionException($"Error comparing current app version number with latest. Version name={_versionName} and lastest version={latestVersion} .", e);
             }
         }
 
@@ -45,8 +47,9 @@ namespace Plugin.LatestVersion
         public async Task<string> GetLatestVersionNumber(string appName)
         {
             var version = string.Empty;
+            var url = $"https://play.google.com/store/apps/details?id={appName}";
 
-            using (var request = new HttpRequestMessage(HttpMethod.Get, $"https://play.google.com/store/apps/details?id={appName}"))
+            using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
                 using (var handler = new HttpClientHandler())
                 {
@@ -56,7 +59,7 @@ namespace Plugin.LatestVersion
                         {
                             if (!responseMsg.IsSuccessStatusCode)
                             {
-                                throw new StoreAccessException();
+                                throw new LatestVersionException($"Error connecting to the Play Store. Url={url}.");
                             }
 
                             try
@@ -72,7 +75,7 @@ namespace Plugin.LatestVersion
                             }
                             catch (Exception e)
                             {
-                                throw new StoreContentException("version", e);
+                                throw new LatestVersionException($"Error parsing content from the Play Store. Url={url}.", e);
                             }
                         }
                     }

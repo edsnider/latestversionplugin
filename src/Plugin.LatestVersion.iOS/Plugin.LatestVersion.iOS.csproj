@@ -60,6 +60,9 @@
     <Compile Include="..\Plugin.LatestVersion\CrossLatestVersion.cs">
       <Link>CrossLatestVersion.cs</Link>
     </Compile>
+    <Compile Include="..\Plugin.LatestVersion\Exceptions.cs">
+      <Link>Exceptions.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.LatestVersion.Abstractions\Plugin.LatestVersion.Abstractions.csproj">
