@@ -9,13 +9,14 @@
         <licenseUrl>https://github.com/edsnider/LatestVersionPlugin/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/edsnider/LatestVersionPlugin</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Easily detect if you are running the latest version of your Xamarin.iOS or Xamarin.Android app and open it in the App Store or Play Store to update it.</description>
-        <tags>ios, android, xamarin.ios, xamarin.android, latestversion, apps, version, appstore, playstore, iphone, ipad, xamarin, xam.plugin, plugin</tags>
+        <description>Easily detect if you are running the latest version of your Xamarin.iOS, Xamarin.Android, or Xamarin.Mac app and open it in the App Store or Play Store to update it.</description>
+        <tags>ios, android, macos, xamarin.ios, xamarin.android, xamarin.mac, latestversion, apps, version, appstore, playstore, iphone, ipad, xamarin, xam.plugin, plugin</tags>
         <releaseNotes>https://github.com/edsnider/LatestVersionPlugin/blob/master/CHANGELOG.md</releaseNotes>
     </metadata>
     <files>
         <file src="src\Plugin.LatestVersion\bin\Release\netstandard1.1\Plugin.LatestVersion.*" target="lib\netstandard1.1" />
         <file src="src\Plugin.LatestVersion.Android\bin\Release\Plugin.LatestVersion.*" target="lib\MonoAndroid10" />
         <file src="src\Plugin.LatestVersion.iOS\bin\Release\Plugin.LatestVersion.*" target="lib\Xamarin.iOS10" />
+        <file src="src\Plugin.LatestVersion.macOS\bin\Release\Plugin.LatestVersion.*" target="lib\Xamarin.Mac20" />
     </files>
 </package>

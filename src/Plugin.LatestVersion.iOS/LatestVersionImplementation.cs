@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Foundation;
 using Plugin.LatestVersion.Abstractions;
-using UIKit;
 
 namespace Plugin.LatestVersion
 {
@@ -105,7 +104,11 @@ namespace Plugin.LatestVersion
             {
                 appName = appName.Replace(" ", "").ToLower();
 
-                UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
+#if __IOS__
+                UIKit.UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
+#elif __MACOS__
+                AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl("macappstore://showUpdatesPage"));
+#endif
             }
             catch (Exception e)
             {
