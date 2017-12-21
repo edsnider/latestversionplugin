@@ -13,7 +13,7 @@ _This plugin is currently a beta/pre-release and only supports Xamarin.iOS, Xama
 | ------------------- | :-----------: | :------------------: |
 |Xamarin.iOS|Yes|7+|
 |Xamarin.Android|Yes|10+|
-|Xamarin.Mac|Yes||
+|Xamarin.Mac|Yes|10.7+|
 |Windows (UWP)|No||
 
 ## API Usage
