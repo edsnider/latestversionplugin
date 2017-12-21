@@ -107,7 +107,7 @@ namespace Plugin.LatestVersion
 #if __IOS__
                 UIKit.UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
 #elif __MACOS__
-                AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl("macappstore://showUpdatesPage"));
+                AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl($"http://appstore.com/mac/{appName}"));
 #endif
             }
             catch (Exception e)

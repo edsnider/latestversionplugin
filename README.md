@@ -56,9 +56,7 @@ Open any app in the public store:
 CrossLatestVersion.Current.OpenAppInStore("appName");
 ```
 
-- `appName` should be the app's **bundle name** with all spaces removed (example: "My App" should be "MyApp") on iOS and the app's **package name** on Android.
-
-**Note about macOS**: `appName` is ignored on macOS in `OpenAppInStore()`. Instead it simply opens the Mac App Store to the updates page because, unlike iOS, you cannot open a specific app page in the Mac App Store using just the app's name.
+- `appName` should be the app's **bundle name** with all spaces removed (example: "My App" should be "MyApp") on iOS/macOS and the app's **package name** on Android.
 
 ## Example
 
