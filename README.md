@@ -40,7 +40,7 @@ Get the version number of any app's latest version available in the public store
 string latestVersionNumber = await CrossLatestVersion.Current.GetLatestVersionNumber("appName");
 ```
 
-- `appName` should be the app's **bundle identifier** on iOS/macOS and the app's **package name** on Android.
+- `appName` should be the app's **bundle identifier** (`CFBundleIdentifier`) on iOS/macOS and the app's **package name** on Android.
 
 ### Open app in public store
 
@@ -56,7 +56,7 @@ Open any app in the public store:
 CrossLatestVersion.Current.OpenAppInStore("appName");
 ```
 
-- `appName` should be the app's **bundle name** with all spaces removed (example: "My App" should be "MyApp") on iOS/macOS and the app's **package name** on Android.
+- `appName` should be the app's **bundle name** (`CFBundleName` or `CFBundleDisplayName`) on iOS/macOS and the app's **package name** on Android.
 
 ## Example
 
