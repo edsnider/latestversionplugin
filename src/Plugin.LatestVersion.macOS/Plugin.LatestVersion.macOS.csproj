@@ -63,6 +63,9 @@
     <Compile Include="..\Plugin.LatestVersion.iOS\LatestVersionImplementation.cs">
       <Link>LatestVersionImplementation.cs</Link>
     </Compile>
+    <Compile Include="..\Plugin.LatestVersion.iOS\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.LatestVersion.Abstractions\Plugin.LatestVersion.Abstractions.csproj">

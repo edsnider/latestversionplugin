@@ -63,6 +63,7 @@
     <Compile Include="..\Plugin.LatestVersion\Exceptions.cs">
       <Link>Exceptions.cs</Link>
     </Compile>
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.LatestVersion.Abstractions\Plugin.LatestVersion.Abstractions.csproj">

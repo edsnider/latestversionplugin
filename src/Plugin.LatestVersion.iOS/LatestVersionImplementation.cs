@@ -87,9 +87,7 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public void OpenAppInStore()
         {
-            var appName = _bundleName?.Replace(" ", "").ToLower();
-
-            OpenAppInStore(appName);
+            OpenAppInStore(_bundleName);
         }
 
         /// <inheritdoc />
@@ -102,7 +100,7 @@ namespace Plugin.LatestVersion
 
             try
             {
-                appName = appName.Replace(" ", "").ToLower();
+                appName = appName.MakeSafeForAppStoreShortLinkUrl();
 
 #if __IOS__
                 UIKit.UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
