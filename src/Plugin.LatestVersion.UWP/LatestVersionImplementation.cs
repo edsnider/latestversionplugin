@@ -63,18 +63,15 @@ namespace Plugin.LatestVersion
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore()
+        public async Task OpenAppInStore()
         {
             try
             {
-                Task.Run(async () =>
-                {
-                    var context = StoreContext.GetDefault();
-                    var product = await context.GetStoreProductForCurrentAppAsync();
-                    var storeId = product.Product.StoreId;
+                var context = StoreContext.GetDefault();
+                var product = await context.GetStoreProductForCurrentAppAsync();
+                var storeId = product.Product.StoreId;
 
-                    OpenAppInStore(storeId);
-                });
+                await OpenAppInStore(storeId);
             }
             catch (Exception e)
             {
@@ -83,7 +80,7 @@ namespace Plugin.LatestVersion
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore(string appName)
+        public async Task OpenAppInStore(string appName)
         {
             if (string.IsNullOrWhiteSpace(appName))
             {
@@ -94,11 +91,11 @@ namespace Plugin.LatestVersion
             {
                 if (Guid.TryParse(appName, out Guid appId))
                 {
-                    Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?AppId={appName}"));
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?AppId={appName}"));
                 }
                 else
                 {
-                    Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?ProductId={appName}"));
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?ProductId={appName}"));
                 }
             }
             catch (Exception e)

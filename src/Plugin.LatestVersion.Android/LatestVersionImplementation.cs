@@ -91,13 +91,13 @@ namespace Plugin.LatestVersion
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore()
+        public Task OpenAppInStore()
         {
-            OpenAppInStore(_packageName);
+            return OpenAppInStore(_packageName);
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore(string appName)
+        public Task OpenAppInStore(string appName)
         {
             if (string.IsNullOrWhiteSpace(appName))
             {
@@ -116,6 +116,8 @@ namespace Plugin.LatestVersion
                 var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"https://play.google.com/store/apps/details?id={appName}"));
                 Application.Context.StartActivity(intent);
             }
+
+            return Task.FromResult(true);
         }
     }
 }
