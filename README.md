@@ -55,7 +55,7 @@ Open any app in the public store:
 CrossLatestVersion.Current.OpenAppInStore("appName");
 ```
 
-- `appName` should be the app's **bundle name** (`CFBundleName` or `CFBundleDisplayName`) on iOS/macOS, the app's **package name** on Android, and the app's Store ID or App ID on Windows.
+- `appName` should be the app's **bundle name** (`CFBundleName` or `CFBundleDisplayName`) on iOS/macOS, the app's **package name** on Android, and the app's **Store ID** or **App ID** on Windows.
 
 ## Example
 
