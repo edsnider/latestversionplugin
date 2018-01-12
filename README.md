@@ -1,20 +1,18 @@
-# LatestVersion Plugin for Xamarin apps
+# LatestVersion Plugin for Xamarin and Windows apps
 
 [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.LatestVersion.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.LatestVersion/)
 [![Build status](https://ci.appveyor.com/api/projects/status/sbvvle9doh9k6fkw?svg=true)](https://ci.appveyor.com/project/edsnider/latestversionplugin)
 
-Easily detect if you are running the latest version of your iOS, macOS, or Android app and open it in the App Store or Play Store to update it. You can also use this plugin to check the latest version number of other apps and to open other apps in the App Store and Play Store.
+Easily detect if you are running the latest version of your iOS, macOS, Android, or Windows app and open it in the App Store, Play Store, or Microsoft Store to update it. You can also use this plugin to check the latest version number of other apps and to open other apps in the App Store, Play Store, and Microsoft Store.
 
 ## Supported platforms and versions
-
-_This plugin is currently a beta/pre-release and only supports Xamarin.iOS, Xamarin.Android, and Xamarin.Mac. Support for additional app platforms is intended._
 
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
 |Xamarin.iOS|Yes|7+|
 |Xamarin.Android|Yes|10+|
 |Xamarin.Mac|Yes|10.7+|
-|Windows (UWP)|No||
+|Windows (UWP)|Yes|10.0+<br>(Target 14393+)|
 
 ## API Usage
 
@@ -41,6 +39,7 @@ string latestVersionNumber = await CrossLatestVersion.Current.GetLatestVersionNu
 ```
 
 - `appName` should be the app's **bundle identifier** (`CFBundleIdentifier`) on iOS/macOS and the app's **package name** on Android.
+- This method is not currently supported on UWP. Only `GetLatestVersionNumber()` is supported.
 
 ### Open app in public store
 
@@ -56,7 +55,7 @@ Open any app in the public store:
 CrossLatestVersion.Current.OpenAppInStore("appName");
 ```
 
-- `appName` should be the app's **bundle name** (`CFBundleName` or `CFBundleDisplayName`) on iOS/macOS and the app's **package name** on Android.
+- `appName` should be the app's **bundle name** (`CFBundleName` or `CFBundleDisplayName`) on iOS/macOS, the app's **package name** on Android, and the app's Store ID or App ID on Windows.
 
 ## Example
 
