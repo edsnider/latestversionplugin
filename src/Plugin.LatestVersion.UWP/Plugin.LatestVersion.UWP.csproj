@@ -113,6 +113,7 @@
     <Compile Include="..\Plugin.LatestVersion\Exceptions.cs">
       <Link>Exceptions.cs</Link>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="LatestVersionImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Plugin.LatestVersion.UWP.rd.xml" />

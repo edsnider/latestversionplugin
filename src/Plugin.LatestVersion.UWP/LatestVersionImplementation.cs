@@ -19,7 +19,7 @@ namespace Plugin.LatestVersion
                 var context = StoreContext.GetDefault();
                 var updates = await context.GetAppAndOptionalStorePackageUpdatesAsync();
 
-                return updates.Count > 0;
+                return updates.Count <= 0;
             }
             catch (Exception e)
             {
@@ -32,13 +32,13 @@ namespace Plugin.LatestVersion
         {
             try
             {
-                var version = Package.Current.Id.Version.ToString();
+                var version = Package.Current.Id.Version.ToVersionString();
                 var context = StoreContext.GetDefault();
                 var updates = await context.GetAppAndOptionalStorePackageUpdatesAsync();
                 
                 if (updates.Count > 0)
                 {
-                    version = updates[0]?.Package?.Id?.Version.ToString();
+                    version = updates[0]?.Package?.Id?.Version.ToVersionString();
                 }
 
                 return version;
