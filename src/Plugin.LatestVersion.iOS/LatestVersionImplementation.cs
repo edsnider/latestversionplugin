@@ -70,7 +70,6 @@ namespace Plugin.LatestVersion
                                 var appStoreItem = JsonValue.Parse(content);
 
                                 version = appStoreItem["results"][0]["version"];
-
                             }
                             catch (Exception e)
                             {

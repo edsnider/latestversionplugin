@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.LatestVersion", "Plugin.LatestVersion\Plugin.LatestVersion.csproj", "{973A49A6-F389-499D-8D7D-AD84AB280B71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.LatestVersion", "Plugin.LatestVersion\Plugin.LatestVersion.csproj", "{973A49A6-F389-499D-8D7D-AD84AB280B71}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.LatestVersion.Abstractions", "Plugin.LatestVersion.Abstractions\Plugin.LatestVersion.Abstractions.csproj", "{A7885CA4-850F-4641-A262-FFE7A2333223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.LatestVersion.Abstractions", "Plugin.LatestVersion.Abstractions\Plugin.LatestVersion.Abstractions.csproj", "{A7885CA4-850F-4641-A262-FFE7A2333223}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.LatestVersion.iOS", "Plugin.LatestVersion.iOS\Plugin.LatestVersion.iOS.csproj", "{30713D25-36C9-4F77-8D00-A3DD9A4E2963}"
 EndProject
