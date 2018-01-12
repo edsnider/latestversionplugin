@@ -30,12 +30,12 @@ namespace Plugin.LatestVersion.Abstractions
         /// <summary>
         /// Opens the current app in the public store.
         /// </summary>
-        void OpenAppInStore();
+        Task OpenAppInStore();
 
         /// <summary>
         /// Opens an app in the public store.
         /// </summary>
         /// <param name="appName">Name of the app to open.</param>
-        void OpenAppInStore(string appName);
+        Task OpenAppInStore(string appName);
     }
 }

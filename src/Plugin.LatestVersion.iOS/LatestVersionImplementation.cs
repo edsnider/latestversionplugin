@@ -70,7 +70,6 @@ namespace Plugin.LatestVersion
                                 var appStoreItem = JsonValue.Parse(content);
 
                                 version = appStoreItem["results"][0]["version"];
-
                             }
                             catch (Exception e)
                             {
@@ -85,13 +84,13 @@ namespace Plugin.LatestVersion
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore()
+        public Task OpenAppInStore()
         {
-            OpenAppInStore(_bundleName);
+            return OpenAppInStore(_bundleName);
         }
 
         /// <inheritdoc />
-        public void OpenAppInStore(string appName)
+        public Task OpenAppInStore(string appName)
         {
             if (string.IsNullOrWhiteSpace(appName))
             {
@@ -107,6 +106,8 @@ namespace Plugin.LatestVersion
 #elif __MACOS__
                 AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl($"http://appstore.com/mac/{appName}"));
 #endif
+
+                return Task.FromResult(true);
             }
             catch (Exception e)
             {
