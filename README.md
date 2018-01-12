@@ -70,7 +70,7 @@ if (!isLatest)
 
     if (update)
     {
-        CrossLatestVersion.Current.OpenAppInStore();
+        await CrossLatestVersion.Current.OpenAppInStore();
     }
 }
 ```
