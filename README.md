@@ -9,8 +9,8 @@ Easily detect if you are running the latest version of your iOS, macOS, Android,
 
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
-|Xamarin.iOS|Yes|7+|
-|Xamarin.Android|Yes|10+|
+|Xamarin.iOS|Yes|7.0+|
+|Xamarin.Android|Yes|10.0+|
 |Xamarin.Mac|Yes|10.7+|
 |Windows (UWP)|Yes|10.0+<br>(Target 14393+)|
 
