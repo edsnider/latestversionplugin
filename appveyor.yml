@@ -1,9 +1,3 @@
-branches:
-  only:
-    - master
-only_commits:
-  files: 
-    - src/
 image: Visual Studio 2017
 configuration: Release
 init:
