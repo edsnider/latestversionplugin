@@ -1,5 +1,6 @@
 ### 1.0.0
 * Initial release
+   - Suppored platforms: Xamarin.iOS, Xamarin.Android, Xamarin.Mac, UWP.
 
 Breaking Changes (from 1.0.0-beta releases):
 * Changed `void OpenAppInStore()` to `Task OpenAppInStore()`
