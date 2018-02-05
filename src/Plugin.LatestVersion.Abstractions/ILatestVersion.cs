@@ -9,6 +9,12 @@ namespace Plugin.LatestVersion.Abstractions
     public interface ILatestVersion
     {
         /// <summary>
+        /// Gets the version number of the current app's installed version.
+        /// </summary>
+        /// <value>The current app's installed version number.</value>
+        string InstalledVersionNumber { get; }
+
+        /// <summary>
         /// Checks if the current app is the latest version available in the public store.
         /// </summary>
         /// <returns>True if the current app is the latest version available, false otherwise.</returns>

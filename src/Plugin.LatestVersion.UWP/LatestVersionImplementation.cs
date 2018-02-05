@@ -11,6 +11,14 @@ namespace Plugin.LatestVersion
     /// </summary>
     public class LatestVersionImplementation : ILatestVersion
     {
+        string _packageVersion => Package.Current.Id.Version.ToVersionString();
+
+        /// <inheritdoc />
+        public string InstalledVersionNumber
+        {
+            get => _packageVersion;
+        }
+
         /// <inheritdoc />
         public async Task<bool> IsUsingLatestVersion()
         {
@@ -32,7 +40,7 @@ namespace Plugin.LatestVersion
         {
             try
             {
-                var version = Package.Current.Id.Version.ToVersionString();
+                var version = _packageVersion;
                 var context = StoreContext.GetDefault();
                 var updates = await context.GetAppAndOptionalStorePackageUpdatesAsync();
                 
