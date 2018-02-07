@@ -1,3 +1,7 @@
+environment:
+  next_version: 1.1.0
+  is_pr: false
+
 only_commits:
   files:
     - src/
@@ -6,7 +10,32 @@ only_commits:
 image: Visual Studio 2017
 configuration: Release
 init:
-- cmd: IF "%APPVEYOR_REPO_TAG%"=="true" ( appveyor UpdateBuild -Version "%APPVEYOR_REPO_TAG_NAME%" ) ELSE ( appveyor UpdateBuild -Version "1.0.1-beta%APPVEYOR_BUILD_NUMBER%" )
+  - ps: >-
+      if ($env:APPVEYOR_REPO_TAG -eq "true")
+      {
+        Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME"
+      }
+      else
+      {
+        if (-not $env:APPVEYOR_PULL_REQUEST_NUMBER)
+        {
+          $env:is_pr = "false";
+          if ($env:APPVEYOR_REPO_BRANCH -ne "master")
+          {
+            Update-AppveyorBuild -Version "$($env:next_version)-$($env:APPVEYOR_REPO_BRANCH)-build$($env:APPVEYOR_BUILD_NUMBER)"
+          }
+          else
+          {
+            Update-AppveyorBuild -Version "$($env:next_version)-beta$($env:APPVEYOR_BUILD_NUMBER)"
+          }
+        }
+        else
+        {
+          $env:is_pr = "true";
+          Update-AppveyorBuild -Version "$($env:next_version)-pr$($env:APPVEYOR_PULL_REQUEST_NUMBER)-build$($env:APPVEYOR_BUILD_NUMBER)"
+        }
+      }
+
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
