@@ -1,11 +1,10 @@
 environment:
-  next_version: 1.1.0
+  next_version: 1.1.1
   is_pr: false
 
 only_commits:
   files:
     - src/
-    - CHANGELOG.md
     - nuget/*.nuspec
 image: Visual Studio 2017
 configuration: Release
