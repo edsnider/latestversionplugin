@@ -17,6 +17,12 @@ namespace Plugin.LatestVersion
         string _bundleVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
 
         /// <inheritdoc />
+        public string InstalledVersionNumber
+        {
+            get => _bundleVersion;
+        }
+
+        /// <inheritdoc />
         public async Task<bool> IsUsingLatestVersion()
         {
             var latestVersion = string.Empty;
