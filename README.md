@@ -16,7 +16,7 @@ Easily detect if you are running the latest version of your iOS, macOS, Android,
 
 ## API Usage
 
-### Check latest version
+### Check for latest version
 
 Check if the current running app is the latest version available in the public store:
 
@@ -40,6 +40,14 @@ string latestVersionNumber = await CrossLatestVersion.Current.GetLatestVersionNu
 
 - `appName` should be the app's **bundle identifier** (`CFBundleIdentifier`) on iOS/macOS and the app's **package name** on Android.
 - This method is not currently supported on UWP. Only `GetLatestVersionNumber()` is supported.
+
+### Get installed version number
+
+Get the version number of the current app's installed version:
+
+```csharp
+string installedVersionNumber = CrossLatestVersion.Current.InstalledVersionNumber;
+```
 
 ### Open app in public store
 
