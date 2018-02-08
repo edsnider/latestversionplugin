@@ -50,3 +50,17 @@ after_build:
 - cmd: nuget pack nuget/Plugin.LatestVersion.nuspec -basepath "./" -version "%APPVEYOR_BUILD_VERSION%"
 artifacts:
 - path: '**\*.nupkg'
+
+deploy:
+  - provider: NuGet
+    api_key:
+      secure: iZpf1YSkDiacJ9rKDwnS0DucuVDkzuEUhleT9T+ypZO7hhkToq+bmJCzuNyA9rkE
+    on:
+      branch: master
+      is_pr: false
+
+  - provider: NuGet
+    api_key:
+      secure: iZpf1YSkDiacJ9rKDwnS0DucuVDkzuEUhleT9T+ypZO7hhkToq+bmJCzuNyA9rkE
+    on:
+      appveyor_repo_tag: true
