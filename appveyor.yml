@@ -6,7 +6,7 @@ only_commits:
   files:
     - src/
     - nuget/*.nuspec
-image: Visual Studio 2017
+image: Previous Visual Studio 2017
 configuration: Release
 init:
   - ps: >-
