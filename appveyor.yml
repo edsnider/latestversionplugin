@@ -43,6 +43,7 @@ assembly_info:
   assembly_informational_version: '{version}'
 before_build:
 - cmd: nuget restore src/LatestVersionPlugin.sln
+- cmd: msbuild src/Plugin.LatestVersion.macOS/Plugin.LatestVersion.macOS.csproj /verbosity:minimal
 build:
   verbosity: minimal
 after_build:
