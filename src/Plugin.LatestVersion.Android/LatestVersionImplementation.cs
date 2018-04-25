@@ -58,7 +58,7 @@ namespace Plugin.LatestVersion
             }
 
             var version = string.Empty;
-            var url = $"https://play.google.com/store/apps/details?id={appName}";
+            var url = $"https://play.google.com/store/apps/details?id={appName}&hl=en";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
