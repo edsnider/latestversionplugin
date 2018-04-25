@@ -77,7 +77,7 @@ namespace Plugin.LatestVersion
                             {
                                 var content = responseMsg.Content == null ? null : await responseMsg.Content.ReadAsStringAsync();
 
-                                var versionMatch = Regex.Match(content, "<div[^>]*>Current Version</div><div[^>]*><span[^>]*>(.*?)<").Groups[1];
+                                var versionMatch = Regex.Match(content, "<div[^>]*>Current Version</div><span[^>]*><div><span[^>]*>(.*?)<").Groups[1];
 
                                 if (versionMatch.Success)
                                 {
