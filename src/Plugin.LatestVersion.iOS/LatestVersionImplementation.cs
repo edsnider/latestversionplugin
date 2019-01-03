@@ -54,7 +54,8 @@ namespace Plugin.LatestVersion
             }
 
             var version = string.Empty;
-            var url = $"http://itunes.apple.com/lookup?bundleId={appName}";
+            // Use cache parameter to prevent caching
+            var url = $"http://itunes.apple.com/lookup?bundleId={appName}&cache={Guid.NewGuid()}";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {

@@ -58,7 +58,8 @@ namespace Plugin.LatestVersion
             }
 
             var version = string.Empty;
-            var url = $"https://play.google.com/store/apps/details?id={appName}&hl=en";
+            // Use cache parameter to prevent caching
+            var url = $"https://play.google.com/store/apps/details?id={appName}&hl=en&cache={Guid.NewGuid()}";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
