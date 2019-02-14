@@ -6,12 +6,10 @@ variables:
   buildNumber: $[counter('versioncounter', 70)]
 
 trigger:
-  tags:
-    include:
-    - v*
   branches:
     include:
     - master
+    - refs/tags/v*
   paths:
     include:
     - src/
