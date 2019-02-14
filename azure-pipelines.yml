@@ -1,0 +1,110 @@
+name: $(build.buildId)
+
+variables:
+  buildConfiguration: 'Release'
+  version: '1.1.3'
+  buildNumber: $[counter('versioncounter', 70)]
+
+trigger:
+  tags:
+    include:
+    - v*
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/
+    - nuget/*.nuspec
+
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/
+
+pool:
+  vmImage: vs2017-win2016
+  demands: msbuild
+
+steps:
+- powershell: |
+    $isVersionTag = $false
+    $isPR = $false
+    $versionTagPattern = "(tags\/v)(\d+\.\d+\.\d+)$"
+    $versionTagMatches = [regex]::matches($Env:BUILD_SOURCEBRANCH,$versionTagPattern)
+    $prPattern = "pull\/(\d+)\/"
+    $prMatches = [regex]::matches($Env:BUILD_SOURCEBRANCH,$prPattern)
+
+    switch($versionTagMatches.Count)
+    {
+        0
+        {
+          $isVersionTag = $false
+        }
+        default
+        {
+          $isVersionTag = $true
+        }
+    }
+    
+    switch($prMatches.Count)
+    {
+        0
+        {
+          $isPR = $false
+        }
+        default
+        {
+          $isPR = $true
+        }
+    }
+
+    if ($isVersionTag -eq $true)
+    {
+        Write-Host "Building from tag..."
+        $versionFromTag = $versionTagMatches[0].Groups[2]
+        Write-Host "Setting version to $versionFromTag from tag name..."
+        Write-Host "##vso[task.setvariable variable=packageVersion]$versionFromTag"
+        Write-Host "##vso[task.setvariable variable=assemblyVersion]$versionFromTag"
+    }
+    elseif ($isPR -eq $true)
+    {
+        Write-Host "Building from PR commit..."
+        $prVersion = $Env:version + "-pr" + $prMatches[0].Groups[1] + "." + $Env:buildNumber
+        Write-Host "Setting version to $prVersion..."
+        Write-Host "##vso[task.setvariable variable=packageVersion]$prVersion"
+        Write-Host "##vso[task.setvariable variable=assemblyVersion]$version"
+    }
+    else
+    {
+        Write-Host "Building from master branch commit..."
+        $betaVersion = $Env:version + "-beta." + $Env:buildNumber
+        Write-Host "Setting version to $betaVersion..."
+        Write-Host "##vso[task.setvariable variable=packageVersion]$betaVersion"
+        Write-Host "##vso[task.setvariable variable=assemblyVersion]$version"
+    }
+  displayName: 'PowerShell script - Set version number'
+
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+
+- task: MSBuild@1
+  inputs:
+    solution: '**/*.sln'
+    configuration: '$(buildConfiguration)'
+    msbuildArguments: '/p:PackageVersion=$(packageVersion);AssemblyVersion=$(assemblyVersion);AssemblyFileVersion=$(assemblyVersion)'
+
+- task: CopyFiles@2
+  displayName: 'Copy .nupkg to artifact staging directory'
+  inputs:
+    SourceFolder: '$(build.sourcesDirectory)'
+    Contents: '**\bin\$(buildConfiguration)\**\*.nupkg'
+    TargetFolder: '$(build.artifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)'
