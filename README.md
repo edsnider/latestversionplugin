@@ -1,7 +1,8 @@
 # LatestVersion Plugin for Xamarin and Windows apps
 
-[![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.LatestVersion.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.LatestVersion/)
-[![Build status](https://ci.appveyor.com/api/projects/status/sbvvle9doh9k6fkw?svg=true)](https://ci.appveyor.com/project/edsnider/latestversionplugin)
+[![Build Status](https://dev.azure.com/edsnider/latestversionplugin/_apis/build/status/edsnider.latestversionplugin?branchName=master)](https://dev.azure.com/edsnider/latestversionplugin/_build/latest?definitionId=7&branchName=master)
+[![MyGet](https://img.shields.io/myget/edsnider/vpre/Xam.Plugin.LatestVersion.svg?label=myget)](https://www.myget.org/feed/edsnider/package/nuget/Xam.Plugin.LatestVersion)
+[![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.LatestVersion.svg?label=nuget)](https://www.nuget.org/packages/Xam.Plugin.LatestVersion)
 
 Easily detect if you are running the latest version of your iOS, macOS, Android, or Windows app and open it in the App Store, Play Store, or Microsoft Store to update it. You can also use this plugin to check the latest version number of other apps and to open other apps in the App Store, Play Store, and Microsoft Store.
 
