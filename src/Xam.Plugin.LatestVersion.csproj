@@ -41,13 +41,8 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
   </ItemGroup>
-  
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) ">
-    <Reference Include="System.Json" />
-    <Compile Include="**\*.ios.cs" />
-  </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.mac')) ">
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) Or $(TargetFramework.StartsWith('xamarin.mac')) ">
     <Reference Include="System.Json" />
     <Compile Include="**\*.ios.cs" />
   </ItemGroup>
