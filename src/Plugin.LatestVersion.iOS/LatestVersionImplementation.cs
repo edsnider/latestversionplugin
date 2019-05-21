@@ -16,6 +16,8 @@ namespace Plugin.LatestVersion
         string _bundleIdentifier => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleIdentifier").ToString();
         string _bundleVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
 
+        public string CountryCode { get; set; }
+
         /// <inheritdoc />
         public string InstalledVersionNumber
         {
@@ -54,7 +56,7 @@ namespace Plugin.LatestVersion
             }
 
             var version = string.Empty;
-            var url = $"http://itunes.apple.com/lookup?bundleId={appName}";
+            var url = string.IsNullOrWhiteSpace(CountryCode) ? $"http://itunes.apple.com/lookup?bundleId={appName}" : $"http://itunes.apple.com/{CountryCode}/lookup?bundleId={appName}";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
