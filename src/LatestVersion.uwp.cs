@@ -58,19 +58,6 @@ namespace Plugin.LatestVersion
         }
 
         /// <inheritdoc />
-        public async Task<string> GetLatestVersionNumber(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
-
-            // NOTE: This method is currently not support for UWP, so returning string.Empty
-
-            return await Task.FromResult(string.Empty);
-        }
-
-        /// <inheritdoc />
         public async Task OpenAppInStore()
         {
             try
@@ -79,24 +66,6 @@ namespace Plugin.LatestVersion
                 var product = await context.GetStoreProductForCurrentAppAsync();
                 var storeId = product.Product.StoreId;
 
-                await OpenAppInStore(storeId);
-            }
-            catch (Exception e)
-            {
-                throw new LatestVersionException($"Unable to open the current app in the Store.", e);
-            }
-        }
-
-        /// <inheritdoc />
-        public async Task OpenAppInStore(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
-
-            try
-            {
                 if (Guid.TryParse(appName, out Guid appId))
                 {
                     await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?AppId={appName}"));
@@ -108,7 +77,7 @@ namespace Plugin.LatestVersion
             }
             catch (Exception e)
             {
-                throw new LatestVersionException($"Unable to open {appName} in the Store.", e);
+                throw new LatestVersionException($"Unable to open the current app in the Store.", e);
             }
         }
     }

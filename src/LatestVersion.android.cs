@@ -46,19 +46,8 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<string> GetLatestVersionNumber()
         {
-            return await GetLatestVersionNumber(_packageName);
-        }
-
-        /// <inheritdoc />
-        public async Task<string> GetLatestVersionNumber(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
-
             var version = string.Empty;
-            var url = $"https://play.google.com/store/apps/details?id={appName}&hl=en";
+            var url = $"https://play.google.com/store/apps/details?id={_packageName}&hl=en";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
@@ -99,27 +88,16 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public Task OpenAppInStore()
         {
-            return OpenAppInStore(_packageName);
-        }
-
-        /// <inheritdoc />
-        public Task OpenAppInStore(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
-
             try
             {
-                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"market://details?id={appName}"));
+                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"market://details?id={_packageName}"));
                 intent.SetPackage("com.android.vending");
                 intent.SetFlags(ActivityFlags.NewTask);
                 Application.Context.StartActivity(intent);
             }
             catch (ActivityNotFoundException)
             {
-                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"https://play.google.com/store/apps/details?id={appName}"));
+                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"https://play.google.com/store/apps/details?id={_packageName}"));
                 Application.Context.StartActivity(intent);
             }
 

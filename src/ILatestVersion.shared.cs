@@ -27,21 +27,8 @@ namespace Plugin.LatestVersion.Abstractions
         Task<string> GetLatestVersionNumber();
 
         /// <summary>
-        /// Gets the version number of an app's latest version available in the public store.
-        /// </summary>
-        /// <returns>The specified app's latest version number</returns>
-        /// <param name="appName">Name of the app to get.</param>
-        Task<string> GetLatestVersionNumber(string appName);
-
-        /// <summary>
         /// Opens the current app in the public store.
         /// </summary>
         Task OpenAppInStore();
-
-        /// <summary>
-        /// Opens an app in the public store.
-        /// </summary>
-        /// <param name="appName">Name of the app to open.</param>
-        Task OpenAppInStore(string appName);
     }
 }

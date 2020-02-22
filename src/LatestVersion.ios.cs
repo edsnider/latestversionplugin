@@ -42,19 +42,8 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<string> GetLatestVersionNumber()
         {
-            return await GetLatestVersionNumber(_bundleIdentifier);
-        }
-
-        /// <inheritdoc />
-        public async Task<string> GetLatestVersionNumber(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
-
             var version = string.Empty;
-            var url = $"http://itunes.apple.com/lookup?bundleId={appName}";
+            var url = $"http://itunes.apple.com/lookup?bundleId={_bundleIdentifier}";
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
@@ -92,16 +81,7 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public Task OpenAppInStore()
         {
-            return OpenAppInStore(_bundleName);
-        }
-
-        /// <inheritdoc />
-        public Task OpenAppInStore(string appName)
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-            {
-                throw new ArgumentNullException(nameof(appName));
-            }
+            var appName = _bundleName;
 
             try
             {
