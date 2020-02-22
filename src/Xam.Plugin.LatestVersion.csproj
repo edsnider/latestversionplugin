@@ -1,7 +1,8 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.55">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;xamarin.ios10;xamarin.mac20;monoandroid71;uap10.0.14393</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;xamarin.ios10;xamarin.mac20;monoandroid71</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.14393</TargetFrameworks>
 
     <RootNamespace>Plugin.LatestVersion</RootNamespace>
     <AssemblyName>Plugin.LatestVersion</AssemblyName>
