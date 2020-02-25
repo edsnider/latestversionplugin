@@ -7,12 +7,19 @@ using Plugin.LatestVersion.Abstractions;
 
 namespace Plugin.LatestVersion
 {
+    internal class App
+    {
+        public string Version { get; set; }
+        public string Url { get; set; }
+    }
+
     /// <summary>
     /// <see cref="ILatestVersion"/> implementation for iOS.
     /// </summary>
     public class LatestVersionImplementation : ILatestVersion
     {
-        string _bundleName => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleName").ToString();
+        App _app;
+
         string _bundleIdentifier => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleIdentifier").ToString();
         string _bundleVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
 
@@ -42,62 +49,51 @@ namespace Plugin.LatestVersion
         /// <inheritdoc />
         public async Task<string> GetLatestVersionNumber()
         {
-            var version = string.Empty;
-            var url = $"http://itunes.apple.com/lookup?bundleId={_bundleIdentifier}";
+            _app = await LookupApp();
 
-            using (var request = new HttpRequestMessage(HttpMethod.Get, url))
-            {
-                using (var handler = new HttpClientHandler())
-                {
-                    using (var client = new HttpClient(handler))
-                    {
-                        using (var responseMsg = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead))
-                        {
-                            if (!responseMsg.IsSuccessStatusCode)
-                            {
-                                throw new LatestVersionException($"Error connecting to the App Store. Url={url}.");
-                            }
-
-                            try
-                            {
-                                var content = responseMsg.Content == null ? null : await responseMsg.Content.ReadAsStringAsync();
-
-                                var appStoreItem = JsonValue.Parse(content);
-
-                                version = appStoreItem["results"][0]["version"];
-                            }
-                            catch (Exception e)
-                            {
-                                throw new LatestVersionException($"Error parsing content from the App Store. Url={url}.", e);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return version;
+            return _app?.Version;
         }
 
         /// <inheritdoc />
-        public Task OpenAppInStore()
+        public async Task OpenAppInStore()
         {
-            var appName = _bundleName;
-
             try
             {
-                appName = appName.MakeSafeForAppStoreShortLinkUrl();
+                if (_app == null)
+                {
+                    _app = await LookupApp();
+                }
 
 #if __IOS__
-                UIKit.UIApplication.SharedApplication.OpenUrl(new NSUrl($"http://appstore.com/{appName}"));
+                UIKit.UIApplication.SharedApplication.OpenUrl(new NSUrl($"{_app.Url}"));
 #elif __MACOS__
-                AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl($"http://appstore.com/mac/{appName}"));
+                AppKit.NSWorkspace.SharedWorkspace.OpenUrl(new NSUrl($"{_app.Url}"));
 #endif
-
-                return Task.FromResult(true);
             }
             catch (Exception e)
             {
-                throw new LatestVersionException($"Unable to open {appName} in App Store.", e);
+                throw new LatestVersionException($"Unable to open app in App Store.", e);
+            }
+        }
+
+        async Task<App> LookupApp()
+        {
+            try
+            {
+                var http = new HttpClient();
+                var response = await http.GetAsync($"http://itunes.apple.com/lookup?bundleId={_bundleIdentifier}");
+                var content = response.Content == null ? null : await response.Content.ReadAsStringAsync();
+                var appLookup = JsonValue.Parse(content);
+
+                return new App
+                {
+                    Version = appLookup["results"][0]["version"],
+                    Url = appLookup["results"][0]["trackViewUrl"]
+                };
+            }
+            catch (Exception e)
+            {
+                throw new LatestVersionException($"Error looking up app details in App Store. BundleIdentifier={_bundleIdentifier}.", e);
             }
         }
     }
