@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2020-02-25
+
+### Removed
+- Removed parameterized method overloads:
+  - Removed `GetLatestVersionNumber(string appName)` - use `GetLatestVersionNumber()` instead
+  - Removed `OpenAppInStore(string appName)` - use `OpenAppInStore()` instead
+
+### Fixed
+- [iOS, macOS] Fixed `OpenAppInStore()` implementation to use the app URL provided by the iTunes lookup API instead of the appstore.com URL which was problematic. GitHub issue [#6](https://github.com/edsnider/latestversionplugin/issues/6)
+
 ## [1.1.2] - 2018-12-28
 
 ### Fixed
