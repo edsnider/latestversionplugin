@@ -66,13 +66,13 @@ namespace Plugin.LatestVersion
                 var product = await context.GetStoreProductForCurrentAppAsync();
                 var storeId = product.Product.StoreId;
 
-                if (Guid.TryParse(appName, out Guid appId))
+                if (Guid.TryParse(storeId, out Guid appId))
                 {
-                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?AppId={appName}"));
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?AppId={storeId}"));
                 }
                 else
                 {
-                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?ProductId={appName}"));
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri($"ms-windows-store://pdp/?ProductId={storeId}"));
                 }
             }
             catch (Exception e)
