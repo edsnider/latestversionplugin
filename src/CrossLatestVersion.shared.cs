@@ -21,7 +21,19 @@ namespace Plugin.LatestVersion
             return new LatestVersionImplementation();
 #endif
         }
+        
+        private static string _IosAppCountryAlpha2Code = "";
 
+        /// <summary>
+        /// Needs to be set for IOS application that available only in specific country.
+        /// </summary>
+        /// <value>Alpha 2 code of IOS Application that available in specific country.</value>
+        public static string IosAppCountryAlpha2Code
+        {
+            set => _IosAppCountryAlpha2Code = value + "/";
+            internal get => _IosAppCountryAlpha2Code;
+        }
+        
         /// <summary>
         /// Checks if the plugin is supported on the current platform.
         /// </summary>
