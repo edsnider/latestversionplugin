@@ -80,7 +80,7 @@ namespace Plugin.LatestVersion
         {
             try
             {
-                var http = new HttpClient();
+                using var http = new HttpClient();
                 var response = await http.GetAsync($"http://itunes.apple.com/lookup?bundleId={_bundleIdentifier}");
                 var content = response.Content == null ? null : await response.Content.ReadAsStringAsync();
                 var appLookup = JsonValue.Parse(content);
