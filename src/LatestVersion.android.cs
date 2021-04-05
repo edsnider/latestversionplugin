@@ -21,6 +21,9 @@ namespace Plugin.LatestVersion
         string _versionName => Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName;
 
         /// <inheritdoc />
+        public string CountryCode { get; set; }
+
+        /// <inheritdoc />
         public string InstalledVersionNumber
         {
             get => _versionName;

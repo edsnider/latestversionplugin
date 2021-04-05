@@ -14,6 +14,9 @@ namespace Plugin.LatestVersion
         string _packageVersion => Package.Current.Id.Version.ToVersionString();
 
         /// <inheritdoc />
+        public string CountryCode { get; set; }
+
+        /// <inheritdoc />
         public string InstalledVersionNumber
         {
             get => _packageVersion;

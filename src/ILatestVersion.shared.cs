@@ -9,6 +9,12 @@ namespace Plugin.LatestVersion.Abstractions
     public interface ILatestVersion
     {
         /// <summary>
+        /// Gets and sets the country code to use when looking up the app in the public store.
+        /// Note: This is currently only needed/used by the Apple implementations (defaults to "us")
+        /// </summary>
+        string CountryCode { get; set; }
+
+        /// <summary>
         /// Gets the version number of the current app's installed version.
         /// </summary>
         /// <value>The current app's installed version number.</value>
