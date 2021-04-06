@@ -14,6 +14,7 @@ trigger:
     include:
     - src/
     - nuget/*.nuspec
+    - azure-pipelines.yml
 
 pr:
   branches:
@@ -86,9 +87,12 @@ steps:
     }
   displayName: 'PowerShell script - Set version number'
 
-- task: NuGetToolInstaller@0
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: dotnet restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+    includeNuGetOrg: true
 
 - task: MSBuild@1
   inputs:
