@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.1.0-beta] - 2021-04-06
 
 ### Added
-- Added optional `CountryCode` property. GitHub issue [#25](https://github.com/edsnider/LatestVersionPlugin/issues/25)
+- Added optional `CountryCode` property. GitHub issues [#15](https://github.com/edsnider/LatestVersionPlugin/issues/15), [#25](https://github.com/edsnider/LatestVersionPlugin/issues/25)
 
 ## [2.0.0] - 2020-02-25
 
