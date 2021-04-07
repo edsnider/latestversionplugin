@@ -9,7 +9,7 @@ trigger:
   branches:
     include:
     - master
-    - refs/tags/v*
+    - refs/tags/*
   paths:
     include:
     - src/
@@ -32,7 +32,7 @@ steps:
 - powershell: |
     $isVersionTag = $false
     $isPR = $false
-    $versionTagPattern = "(tags\/v)(\d+\.\d+\.\d+)$"
+    $versionTagPattern = "(tags\/)(\d+\.\d+\.\d+)$"
     $versionTagMatches = [regex]::matches($Env:BUILD_SOURCEBRANCH,$versionTagPattern)
     $prPattern = "pull\/(\d+)\/"
     $prMatches = [regex]::matches($Env:BUILD_SOURCEBRANCH,$prPattern)
