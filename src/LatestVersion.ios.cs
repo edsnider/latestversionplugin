@@ -24,6 +24,9 @@ namespace Plugin.LatestVersion
         string _bundleVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
 
         /// <inheritdoc />
+        public string CountryCode { get; set; } = "us";
+
+        /// <inheritdoc />
         public string InstalledVersionNumber
         {
             get => _bundleVersion;
@@ -78,10 +81,12 @@ namespace Plugin.LatestVersion
 
         async Task<App> LookupApp()
         {
+            var countryCode = string.IsNullOrWhiteSpace(CountryCode) ? "us" : CountryCode;
+
             try
             {
                 using var http = new HttpClient();
-                var response = await http.GetAsync($"http://itunes.apple.com/lookup?bundleId={_bundleIdentifier}");
+                var response = await http.GetAsync($"http://itunes.apple.com/{countryCode}/lookup?bundleId={_bundleIdentifier}");
                 var content = response.Content == null ? null : await response.Content.ReadAsStringAsync();
                 var appLookup = JsonValue.Parse(content);
 

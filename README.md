@@ -49,6 +49,19 @@ Open the current running app in the public store:
 await CrossLatestVersion.Current.OpenAppInStore();
 ```
 
+### Set country code
+
+Set the country code to be used when looking up the current app in the public store:
+
+```csharp
+CrossLatestVersion.Current.CountryCode = "nz";
+```
+
+Notes about the `CountryCode` property:
+- It is optional; if not provided it will default to "us".
+- It is only needed/used on iOS. 
+- If used, the value should be an alpha-2 code (ISO 3166-1). 
+
 ## Example
 
 ```csharp
