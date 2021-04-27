@@ -100,7 +100,8 @@ namespace Plugin.LatestVersion
             }
             catch (ActivityNotFoundException)
             {
-                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"https://play.google.com/store/apps/details?id={_packageName}"));
+                var intent = new Intent(Intent.ActionView, Net.Uri.Parse($"https://play.google.com/store/apps/details?id={_packageName}"));				
+                intent.SetFlags(ActivityFlags.NewTask);
                 Application.Context.StartActivity(intent);
             }
 
