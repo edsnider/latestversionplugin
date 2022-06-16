@@ -8,6 +8,9 @@ using Android.Content.PM;
 using Android.Runtime;
 using Net = Android.Net;
 using Plugin.LatestVersion.Abstractions;
+using HtmlAgilityPack;
+using System.Linq;
+using Jurassic.Library;
 
 namespace Plugin.LatestVersion
 {
@@ -42,7 +45,7 @@ namespace Plugin.LatestVersion
             }
             catch (Exception e)
             {
-                throw new LatestVersionException($"Error comparing current app version number with latest. Version name={_versionName} and lastest version={latestVersion} .", e);
+                throw new LatestVersionException($"Error comparing current app version number with latest. Version name={_versionName} and lastest version={latestVersion}", e);
             }
         }
 
@@ -69,12 +72,20 @@ namespace Plugin.LatestVersion
                             {
                                 var content = responseMsg.Content == null ? null : await responseMsg.Content.ReadAsStringAsync();
 
-                                var versionMatch = Regex.Match(content, "<div[^>]*>Current Version</div><span[^>]*><div[^>]*><span[^>]*>(.*?)<").Groups[1];
+                                var doc = new HtmlDocument();
+                                doc.LoadHtml(content);
 
-                                if (versionMatch.Success)
-                                {
-                                    version = versionMatch.Value.Trim();
-                                }
+                                var scripts = doc.DocumentNode.Descendants()
+                                    .Where(n => n.Name == "script" && n.InnerText.Contains("AF_initDataCallback({key: 'ds:4'"))
+                                    .ToArray();
+
+                                var script = scripts.First().InnerText;
+
+                                var engine = new Jurassic.ScriptEngine();
+                                var eval = "(function() { var AF_initDataCallback = function(p) { return p.data[1][2][140][0][0][0]; };  return " + script + " })()";
+                                var result = engine.Evaluate(eval);
+
+                                version = result is null ? string.Empty : result.ToString();
                             }
                             catch (Exception e)
                             {
