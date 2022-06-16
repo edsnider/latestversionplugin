@@ -50,6 +50,8 @@
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
+    <PackageReference Include="Jurassic" Version="3.2.6" />
     <Compile Include="**\*.android.cs" />
   </ItemGroup>
 
