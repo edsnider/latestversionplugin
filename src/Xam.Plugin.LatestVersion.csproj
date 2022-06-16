@@ -10,7 +10,7 @@
     <AssemblyFileVersion>0.1.0.0</AssemblyFileVersion>
 
     <!-- NuGet package info -->
-    <PackageId>Xam.Plugin.LatestVersion.Forked</PackageId>
+    <PackageId>Xam.Plugin.LatestVersion</PackageId>
     <Title>LatestVersion Plugin for Xamarin and Windows</Title>
     <PackageVersion>0.1.1</PackageVersion>
     <Authors>edsnider</Authors>
