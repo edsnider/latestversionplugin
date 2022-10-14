@@ -76,7 +76,7 @@ namespace Plugin.LatestVersion
                                 doc.LoadHtml(content);
 
                                 var scripts = doc.DocumentNode.Descendants()
-                                    .Where(n => n.Name == "script" && n.InnerText.Contains("AF_initDataCallback({key: 'ds:4'"))
+                                    .Where(n => n.Name == "script" && n.InnerText.Contains("AF_initDataCallback({key: 'ds:5'"))
                                     .ToArray();
 
                                 var script = scripts.First().InnerText;
